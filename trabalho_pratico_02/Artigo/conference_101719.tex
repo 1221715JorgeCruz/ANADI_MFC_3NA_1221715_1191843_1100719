@@ -122,57 +122,6 @@ O RMSE é uma boa medida de exatidão, mas apenas para comparar erros de previs�
 Representa o coeficiente de determinação dos valores em comparação com os valores originais. O valor de 0 a 1 é interpretado como percentagem. Quanto mais elevado for o valor, melhor é o modelo.\cite{madureira2024cv} 
 
 
-\subsection{Correlação}
-Em estatística, a correlação é uma medida que indica o grau de associação entre duas variáveis. Ela quantifica a intensidade e a direção da relação linear entre as variáveis.
- A correlação é sempre um número entre -1 e 1. Valores próximos de 0 indicam uma relação linear muito fraca. A força da relação aumenta à medida que esta se afasta de 0 em direção a -1 ou 1. Valores próximos de -1 ou 1 indicam que os pontos estão próximos duma linha reta. Os valores extremos -1 e 1 ocorrem apenas quando os pontos de um gráfico de dispersão se encontram  exatamente ao longo de uma linha reta. \cite{moore2017}
-
-\medskip
-\subsubsection{Testes de Correlação}
-
-\paragraph{Pearson}
-
-O coeficiente de correlação mais comum é o Coeficiente de Correlação de Pearson (r), que varia entre -1 e 1. Para aplicar o teste \eqref{pearsonEq}, é necessário cumprir quatro pressupostos \cite{madureira2024}:
-
-\begin{itemize}
-	\item As variáveis devem ser contínuas e não devem existir \textit{outliers} significativos.
-	\item Deve existir uma relação linear entre as duas variáveis.
-	\item As variáveis devem ter aproximadamente uma distribuição normal.
-	\item Variâncias iguais (Homocedasticidade).
-
-\end{itemize}
-
-\begin{equation}
-r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}
-{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2 \sum_{i=1}^{n} (y_i - \bar{y})^2}} \label{pearsonEq}
-\end{equation}
-
-cujas hipóteses são:
-\begin{itemize}
-\item Hipótese nula ($H_0$): Não há correlação linear significativa entre as variáveis (r = 0).
-\item Hipótese alternativa ($H_1$): Existe correlação linear significativa entre as variáveis (r $\neq$ 0).
-\end{itemize}
-
-\medskip
-\paragraph{Spearman}
-
-Este teste é usado quando as variáveis são ambas ordinais ou quando uma das variáveis é contínua e a outra é ordinal \cite{madureira2024}.
-
-De forma semelhante, o coeficiente de Spearman ($\rho$) avalia a correlação entre -1 e 1, resultado obtido da aplicação da fórmula:
-
-\begin{equation}
-	\label{eq:spearman}
-	\rho = 1 - \frac{6 \sum_{i=1}^n d_i^2}{n(n^2-1)}
-\end{equation}
-
-Onde:
-\begin{itemize}
-
-\item $d_i$ é a diferença entre os postos (ranks) das observações correspondentes nas duas variáveis,
-
-\item \textit{n} é o número total de observações \cite{zar2005}.
-
-\end{itemize}
-
 \subsection{Árvores de Decisão}
 
 Uma árvore de decisão,  \figurename~\ref{fig:Decision_Trees_example},  consiste num conjunto de nós de decisão, ligados por ramos, que se estendem para baixo a partir do nó raiz até terminarem em nós folha. 
@@ -208,7 +157,7 @@ Esta abordagem consiste em dividir aleatoriamente os dados em dois conjuntos: um
 \begin{itemize}
 	\item Construir (treinar) o modelo no conjunto de dados de treino; 
 	\item Aplicar o modelo ao conjunto de dados de teste para prever o resultado de novas observações não vistas; 
-	\item Quantificar o erro de previsão como a diferença média quadrática entre os valores de resultados observados e previstos.
+	\item Quantificar o erro de previsão como a diferença média quadrática entre os valores de resultados observados e previstos. \cite{madureira2024cv}
 \end{itemize}
 
 \medskip
@@ -240,7 +189,7 @@ Uma rede neuronal, \figurename~\ref{fig:nn}, consiste numa rede de neurónios ar
 	\item  A rede neuronal está completamente ligada, o que significa que cada nó de uma determinada camada está ligado a todos os nós das camadas adjacentes, mas não a outros nós da mesma camada:
 	\begin{itemize}
 		\item Cada conexão entre nós tem um peso (por exemplo, $w_{11}$) associado.
-		\item  Na inicialização, estes pesos são atribuídos aleatoriamente a valores entre 0 e 1.
+		\item  Na inicialização, estes pesos são atribuídos aleatoriamente a valores entre 0 e 1. \cite{madureira2024nn}
 	\end{itemize}
 \end{itemize}
 
@@ -253,12 +202,38 @@ Uma rede neuronal, \figurename~\ref{fig:nn}, consiste numa rede de neurónios ar
 
 
 
-\subsubsection{Regressão}
-
-\subsubsection{Classificação}
-
 \subsection{Support Vector Machines - SVM}
 
+Uma máquina de vetores de suporte (SVM) é um algoritmo de aprendizagem automática supervisionada utilizado tanto para a classificação como para a regressão. Embora também se fale de problemas de regressão, é mais adequado para a classificação. O principal objetivo do algoritmo SVM é encontrar o hiperplano ideal num espaço N-dimensional que possa separar os pontos de dados em diferentes classes no espaço de caraterísticas, \figurename~\ref{fig:svm}. O hiperplano tenta que a margem entre os pontos mais próximos das diferentes classes seja a máxima possível. A dimensão do hiperplano depende do número de caraterísticas. Se o número de caraterísticas de entrada for dois, então o hiperplano é apenas uma linha. Se o número de caraterísticas de entrada for três, então o hiperplano torna-se num plano 2-D. \cite{madureira2024svm}
+
+Terminologia:
+
+\begin{itemize}
+	\item \textbf{Hiperplano}: Um limite de decisão que separa diferentes classes no espaço de caraterísticas e é representado pela equação $wx + b = 0$ na classificação linear.
+	
+	\item \textbf{Vetores de suporte}: Os pontos de dados mais próximos do hiperplano, cruciais para determinar o hiperplano e a margem no SVM.
+	
+	\item \textbf{Margem}: A distância entre o hiperplano e os vetores de suporte. O objetivo do SVM é maximizar esta margem para obter um melhor desempenho de classificação.
+	
+	\item \textbf{Kernel}: Uma função que mapeia os dados para um espaço de dimensão superior, permitindo que o SVM lide com dados não linearmente separáveis. \cite{madureira2024svm}
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{svm}
+	\caption{Hiperplano, vetores de suporte e margem - SVM.}
+	\label{fig:svm}
+\end{figure}
+
+
+\subsection{kNN - K-Vizinhos Mais Próximos}
+
+
+O algoritmo do vizinho mais próximo (\textit{Nearest Neighbour}) classifica uma instância de dados com base nos seus vizinhos. A classe de uma instância de dados determinada pelo algoritmo dos k-vizinhos mais próximos é a classe com maior representação entre os k-vizinhos mais próximos. 
+
+Os algoritmos do vizinho mais próximo estão entre os algoritmos de aprendizagem automática supervisionada mais “simples” e têm sido bem estudados no domínio do reconhecimento de padrões. 
+
+O algoritmo do k-vizinho mais próximo é usado em projetos de classificação como referência de desempenho preditivo quando se está a tentar desenvolver modelos mais sofisticados. O kNN funciona utilizando a proximidade e a votação por maioria para efetuar previsões. \cite{madureira2024knn}
 
 \section{Métodos e Resultados Obtidos}
 
@@ -700,6 +675,12 @@ Madureira, A. (2024). *Aulas T - Decision Trees*. Instituto Superior de Engenhar
 A.~Ohekar, ``What is the difference between a Decision Tree Classifier and a Decision Tree Regressor?,'' \emph{Medium}, Sep. 26, 2023. [Online]. Available: https://medium.com/@aaryanohekar277/what-is-the-difference-between-a-decision-tree-classifier-and-a-decision-tree-regressor-36641bd6559c [Accessed: Jun. 7, 2025].
 \bibitem{refaeilzadeh_cross-validation_2009}
 P.~Refaeilzadeh, L.~Tang, and H.~Liu, ``Cross-Validation,'' in \emph{Encyclopedia of Database Systems}, Springer, Boston, MA, 2009, pp. 532--538.
+\bibitem{madureira2024nn}
+Madureira, A. (2024). *Aulas T - Neural Networks*. Instituto Superior de Engenharia do Porto (ISEP). Ano letivo 2024/2025.
+\bibitem{madureira2024svm}
+Madureira, A. (2024). *Aulas T - Support Vector Machines*. Instituto Superior de Engenharia do Porto (ISEP). Ano letivo 2024/2025.
+\bibitem{madureira2024knn}
+Madureira, A. (2024). *Aulas T - kNN Algorithm*. Instituto Superior de Engenharia do Porto (ISEP). Ano letivo 2024/2025.
 \bibitem{montgomery2021} 
 Montgomery, D. C., Peck, E. A., \& Vining, G. G. (2021). 
 \textit{Introduction to Linear Regression Analysis} (6ª ed.). Wiley.
