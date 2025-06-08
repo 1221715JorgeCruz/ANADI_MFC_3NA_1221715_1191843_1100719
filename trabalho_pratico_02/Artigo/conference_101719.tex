@@ -197,10 +197,65 @@ As árvores de regressão são utilizados para prever variáveis-alvo contínuas
 
 Os classificadores de árvores de decisão são utilizados para prever variáveis-alvo categóricas, como, por exemplo, se uma mensagem de correio eletrónico é ou não spam ou se um cliente vai ou não desistir. Para efetuar uma previsão, o classificador de árvore de decisão percorre a árvore desde o nó raiz até ao nó folha que corresponde às caraterísticas do novo ponto de dados. A classe prevista é então a classe com a maioria dos pontos de dados no nó folha. \cite{ohekar_what_2023}
 
-\subsection{K-Fold Cross-Validation}
+\subsection{Cross-Validation}
 
+A validação cruzada (Cross-Validation) é um método estatístico de avaliação e comparação de algoritmos de aprendizagem, dividindo os dados em dois segmentos: um utilizado para treinar um modelo e o outro utilizado para validar o modelo. Na validação cruzada típica, os conjuntos de treino e validação devem cruzar-se em rondas sucessivas, de modo a que cada ponto de dados tenha uma hipótese de ser validado. \cite{refaeilzadeh_cross-validation_2009}
+
+\medskip
+\subsubsection{Hold Out}
+
+Esta abordagem consiste em dividir aleatoriamente os dados em dois conjuntos: um conjunto é utilizado para treinar o modelo e o outro conjunto é utilizado para testar o modelo. O processo funciona da seguinte forma: 
+\begin{itemize}
+	\item Construir (treinar) o modelo no conjunto de dados de treino; 
+	\item Aplicar o modelo ao conjunto de dados de teste para prever o resultado de novas observações não vistas; 
+	\item Quantificar o erro de previsão como a diferença média quadrática entre os valores de resultados observados e previstos.
+\end{itemize}
+
+\medskip
+\subsubsection{K-Fold Cross-Validation}
+
+O método de validação cruzada \textit{k-fold} avalia o desempenho do modelo em diferentes subconjuntos dos dados de treino e, em seguida, calcula a taxa média de erro de previsão. O algoritmo é o seguinte:
+\begin{enumerate}
+	\item Dividir aleatoriamente o conjunto de dados em \textit{k} subconjuntos (ou \textit{k-fold}) (por exemplo, 5 subconjuntos);
+	\item Reservar um subconjunto e treinar o modelo em todos os outros subconjuntos;
+	\item Testar o modelo no subconjunto reservado e registar o erro de previsão;
+	\item Repetir este processo até que cada um dos \textit{k} subconjuntos tenha servido como conjunto de teste; 
+	\item Calcular a média dos \textit{k} erros registados. Este é o chamado erro de validação cruzada, que serve de métrica de desempenho para o modelo. 
+\end{enumerate}
+
+A validação cruzada \textit{K-fold} (CV) é um método robusto para estimar a exatidão de um modelo. \cite{madureira2024cv}
 
 \subsection{Redes Neuronais}
+
+Uma rede neuronal, \figurename~\ref{fig:nn}, consiste numa rede de neurónios artificiais ou nós, em camadas, com alimentação direta e completamente ligada:
+
+\begin{itemize}
+	\item A natureza \textit{feedforward} da rede restringe-a uma única direção de fluxo e não permite ciclos. 
+	\item A maioria das redes é constituída por três camadas: uma camada de entrada, uma camada oculta e uma camada de saída; 
+	\begin{itemize}
+		\item Pode haver mais de uma camada oculta, embora a maioria das redes contenha apenas uma, o que é suficiente para a maioria das finalidades.
+	\end{itemize}
+	
+	  
+	\item  A rede neuronal está completamente ligada, o que significa que cada nó de uma determinada camada está ligado a todos os nós das camadas adjacentes, mas não a outros nós da mesma camada:
+	\begin{itemize}
+		\item Cada conexão entre nós tem um peso (por exemplo, $w_{11}$) associado.
+		\item  Na inicialização, estes pesos são atribuídos aleatoriamente a valores entre 0 e 1.
+	\end{itemize}
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{NN}
+	\caption{Exemplo de rede neuronal.}
+	\label{fig:nn}
+\end{figure}
+
+
+
+\subsubsection{Regressão}
+
+\subsubsection{Classificação}
 
 \subsection{Support Vector Machines - SVM}
 
@@ -643,6 +698,8 @@ Madureira, A. (2024). *Aulas T - Introduction to Machine Learning*. Instituto Su
 Madureira, A. (2024). *Aulas T - Decision Trees*. Instituto Superior de Engenharia do Porto (ISEP). Ano letivo 2024/2025.
 \bibitem{ohekar_what_2023}
 A.~Ohekar, ``What is the difference between a Decision Tree Classifier and a Decision Tree Regressor?,'' \emph{Medium}, Sep. 26, 2023. [Online]. Available: https://medium.com/@aaryanohekar277/what-is-the-difference-between-a-decision-tree-classifier-and-a-decision-tree-regressor-36641bd6559c [Accessed: Jun. 7, 2025].
+\bibitem{refaeilzadeh_cross-validation_2009}
+P.~Refaeilzadeh, L.~Tang, and H.~Liu, ``Cross-Validation,'' in \emph{Encyclopedia of Database Systems}, Springer, Boston, MA, 2009, pp. 532--538.
 \bibitem{montgomery2021} 
 Montgomery, D. C., Peck, E. A., \& Vining, G. G. (2021). 
 \textit{Introduction to Linear Regression Analysis} (6ª ed.). Wiley.
