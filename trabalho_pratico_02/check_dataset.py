@@ -24,3 +24,15 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# IMPORTANT for EX 4.2 - Regression:
+# --> Rows per Country
+# --------------------------
+# Portugal: 870
+# Spain: 2233
+# Greece: 2030
+# Italy: 3886
+# --------------------------
+# Total: 9019
+# --------------------------
