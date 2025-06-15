@@ -391,251 +391,114 @@ Aplicou-se, então, o teste não paramétrico \textit{Mann-Whitney-U}.
 Como p \textgreater 0.05, não há evidência de diferença significativa entre os dois países. 
 \medskip
 \subsubsection{\textbf{Exercício 4.2.4}}
-	Testar diferenças nos níveis médios de poluição entre Portugal, Albânia, Espanha e França, para isso foi efetuado o teste ANOVA/\textit{Kruskal-Wallis} para comparação múltipla
-
-Selecionaram-se quatro amostras independentes (n = 20 cada), verificou-se normalidade (Shapiro-Wilk) e homocedasticidade (Levene),
-Como os dados não são normais, aplicou-se o teste de \textit{Kruskal-Wallis} seguido da análise \textit{post-hoc}.
-
-	\begin{table}[H]
-		\centering
-		\caption{Resultados do teste Kruskal-Wallis}
-		\begin{tabular}{lc}
-			\toprule
-			Estatística H & 3.8277 \\
-			p-valor & 0.2807 \\
-			\bottomrule
-		\end{tabular}
-	\end{table}
-
-	\begin{table}[H]
-		\centering
-		\caption{Resultados do teste post-hoc de Dunn}
-		\begin{tabular}{lcc}
-			\toprule
-			Comparação & p-valor & Significativo? \\
-			\midrule
-			Albânia vs. Portugal & 0.0032 & Sim \\
-			Espanha vs. França & 0.8914 & Não \\
-			\bottomrule
-		\end{tabular}
-	\end{table}
-
-Existem diferenças significativas entre pelo menos dois países. A Albânia apresentou níveis de poluição significativamente maiores que Portugal, enquanto Espanha e França não diferiram. 
-
-Portugal vs. Albânia: A poluição em Portugal é inferior à da Albânia (p \textless 0.05).
-Espanha vs. França:Não há diferença significativa (p \textgreater 0.05).
-Comparação múltipla: A Albânia destaca-se como o país com maior poluição, enquanto Portugal, Espanha e França apresentam resultados mais homogéneos
 
 	
-\subsection{Correlação e Regressão}\label{AA}
+\subsection{Classificação}\label{AA}
 
 \subsubsection{\textbf{Exercício 4.3.1}}
 
-Neste exercício iremos construir uma tabela de correlação entre Portugal(PT), Espanha(ES), França(FR) e Itália(IT) para os níveis médios do poluente PM2.5, usando como ponto comum entre os países a asma e a doença isquémica do coração (IHD).
+Neste exercício iremos considerar os países das quatro regiões previamente definidas: \textit{Western Europe}, \textit{Eastern Europe}, \textit{Southern Europe} e \textit{Northen Europe}.
 
-Os dados não possuem tamanhos de amostras iguais para todos os países em análise, pelo que antes de se iniciarem os cálculos foi necessário definir, como tamanho da amostra, o menor valor entre os pares de combinações. Assim, se o país A tiver menos dados que o país B para uma determinada doença, a totalidade de dados do país A será utilizada e uma amostra aleatória do país B, com o mesmo tamanho que A, a selecionada para o estudo e vice-versa.
-
-As amostras são contínuas, por isso, o primeiro passo foi verificar se existe uma relação linear entre as variáveis e qual o valor da correlação entre estas, utilizando, para isso, o coeficiente de correlação de \textit{Pearson}, \textit{r}, e o respectivo \textit{p-value}.
-
-Par um nível de significância $\alpha$ = 0,05, se \textit{p-value} for inferior a 0,05, rejeita-se a hipótese nula, indicando que existe uma correlação linear.
- 
-A partir deste ponto, estudou-se a normalidade das amostras e a sua homocedasticidade. 
+Derivando um novo atributo denominado \textit{RespDisease}, que separa as doenças em respiratórias e não-respiratórias. Na \figurename~\ref{fig:grafico_doenca_respir}, podemos observar a distribuição dos valores deste atributo, com 6270 doenças identificadas como não-respiratórias e 4180 como respiratórias.
 
 
-Na \figurename~\ref{fig:mapacorrelacaoasma} é possível observar o mapa de correlação entre os diversos países para a asma, enquanto na \figurename~ \ref{fig:mapacorrelacaoischemicheartdisease} se observa outro mapa, desta vez para a doença isquémica do coração.
-
-
-À luz dos resultados, embora seja observada uma certa correlação entre Portugal e França para asma (0,51) e Portugal e Itália para doença isquémica do coração (0,41), apenas as combinações PT-ES e PT-FR (IHD) verificam as condições de normalidade e de homocedasticidade. Já a combinação PT-IT para a mesma doença, embora os dados cumpram com a normalidade, não cumprem o critério das variâncias iguais.
-
-Assim, não podemos concluir que existe correlação entre os níveis de poluição médios de PM2.5 para asma e doença isquémica do coração entres os países analisados.
-
-%A partir deste ponto, partimos para o teste de Shapiro, que avalia a normalidade da amostra. Neste teste, existem duas hipóteses:
-%
-%$H_0$: Os dados seguem uma distribuição normal.
-%
-%$H_1$: Os dados não seguem uma distribuição normal.
-%
-%Na tabela X encontra-se os resultados dos testes de Shapiro para as diferentes combinações.
-%
-%\begin{tabular}{|c|c|c|c|c|c|}
-%	\hline
-%	País A & País B & Doença & Tamanho Amostra & p-value A & p-value B \\
-%	\hline
-%	Portugal & Espanha & Asma & 30 & 0,0802 & 0.0326 \\
-%	\hline
-%	Portugal & França & Asma & 30 & 0,0802 & 0,0370 \\
-%	\hline
-%	Portugal & Itália & Asma & 30 & 0,0802 & 0,0077 \\
-%	\hline
-%	Espanha & França & Asma & 77 & 0,0302 & 0,0014 \\
-%	\hline
-%	Espanha & Itália & Asma & 77 & 0,0302 & 0,0000 \\
-%	\hline
-%	França & Itália & Asma & 132 & 0,0001 & 0,0000 \\
-%	\hline
-%	Portugal & Espanha & Doen. Isq. Cor & 30 & 0,0802 & 0,6931 \\
-%	\hline
-%	Portugal & França & Doen. Isq. Cor & 30 & 0,0802 & 0,2328 \\
-%	\hline
-%	Portugal & Itália & Doen. Isq. Cor & 30 & 0,0802 & 0,7191 \\
-%	\hline
-%	Espanha & França & Doen. Isq. Cor & 77 & 0,0302 & 0,0070 \\
-%	\hline
-%	Espanha & Itália & Doen. Isq. Cor & 77 & 0,0302 & 0,0000 \\
-%	\hline
-%	França & Itália & Doen. Isq. Cor & 132 & 0,0001 & 0,0000 \\
-%	\hline
-%	&  &  &  &  &  \\
-%	\hline
-%	&  &  &  &  &  \\
-%	\hline
-%	&  &  &  &  &  \\
-%	\hline
-%\end{tabular}
-
-
-\begin{figure}
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\linewidth]{Mapa_Correlacao_Asma}
-	\caption{Mapa de correlação entre Portugal, Espanha, França e Itália - Asma.}
-	\label{fig:mapacorrelacaoasma}
+	\includegraphics[width=0.9\linewidth]{grafico_doenca_respir}
+	\caption{Distribuição de valores entre doença Respiratória e Não-Respiratória.}
+	\label{fig:grafico_doenca_respir}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\linewidth]{Mapa_Correlacao_Ischemic_Heart_Disease}
-	\caption{Mapa de correlação entre Portugal, Espanha, França e Itália - Doença Isquémica do Coração}
-	\label{fig:mapacorrelacaoischemicheartdisease}
-\end{figure}
 
 \medskip
 
 \subsubsection{\textbf{Exercício 4.3.2}}
 
-Este exercício é sobre regressão linear. Selecionaram-se os dados relativos à Alemanha, novamente para o poluente PM2.5, consideraram-se as seguintes variáveis explicativas:
+Usando o método \textit{k-fold cross validation} desenvolvemos modelos de previsão de \textit{RespDisease} usando os seguintes métodos:
 
-\begin{itemize}
-	\item \textit{X1}: Nível médio de poluição ($\mu$g/m$^{3}$)
-	\item \textit{X2}: Área populacional (km$^{2}$) 
-\end{itemize}
-e a variável independente \textit{Y}: número de mortes prematuras.
 \medskip
-\paragraph{\textbf{Determinar o modelo de regressão linear}}
 
-Filtraram-se os dados e efetuou-se a média dos valores das mortes para cada localização. 
-Com estes dados, adicionaram-se as constantes \textit{X1} e \textit{X2} e aplica-se o método dos mínimos quadrados. O resultado encontra-se na \figurename~\ref{fig:ols}, de onde se extrai a equação do modelo:
+\paragraph{Árvore de Decisão}
 
-\begin{equation}
-	Y = -443,79 + 52,14 \cdot X_1 + 0,0928 \cdot X_2 
-	\label{eq:modelo}
-\end{equation}
+Começamos por definir os dados de entrada (X), que contêm os valores das colunas \textit{Affected Population}, \textit{Populated Area[km2]}, \textit{Air Pollution Average[ug/m3]} e \textit{Value}  e a variável objetivo (y) - \textit{RespDisease}.
 
+De seguida, o \textit{dataset} é dividido na proporção 70-30 para treino e teste, com opção estratificada que garante que a proporção das classes se mantém balanceada entre treino e teste.
 
+Passamos à aplicação do método de \textit{cross-validation}, escolhendo \textit{k = 10 folds}. Este irá armazenar a exatidão de cada \textit{fold} (\textit{k}).
 
-\begin{figure}
+Depois deste passo, treina-se o modelo final com todos os dados de treino e avalia-se no conjunto de teste separado inicialmente. Para isso, a função \textit{DecisionTreeClassifier - DTC} é utilizada, com critério de entropia. Na \figurename~\ref{fig:arvoreDecisaoCM} podemos visualizar a matriz de confusão resultante.
+
+Para otimizar os parâmetros do modelo vamos tentar perceber qual o nível de profundidade que gera um melhor desempenho, iterando-a de 1 a 10, no algoritmo DTC e aplicando a validação cruzada.
+
+Tomando o valor máximo da exatidão entre os diferentes níveis, verifica-se que o valor é máximo para o nível 10 de profundidade.
+
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\linewidth]{OLS_4_3_2}
-	\caption{Modelo de regressão linear.}
-	\label{fig:ols}
+	\includegraphics[width=0.8\linewidth]{arvoreDecisaoCM}
+	\caption{Matriz de Confusão do modelo final.}
+	\label{fig:arvoreDecisaoCM}
 \end{figure}
 
-\medskip
-\paragraph{\textbf{Verificar condições sobre resíduos}}\label{4_3_2_b_ref}
 
-Para verificar as condições sobre os resíduos é necessário avaliar a sua normalidade, homocedasticidade e independência.
-
-Relativamente à normalidade dos resíduos, utilizaram-se duas abordagens: gráfica e teste de \textit{Shapiro}. O gráfico \textit{Quantile-Quantile Plot} da \figurename~\ref{fig:qqplot} mostra pontos dispersos nas extremidades, que se afastam significativamente da linha vermelha, que representa a distribuição normal esperada, o que pode indicar que estes não seguem uma distribuição normal.
-
-Para confirmar, recorremos ao teste de \textit{Shapiro}, que indica um valor de prova igual a 3.46e-76, ou seja, inferior ao valor de significância de 0,05 - logo, concluímos que a distribuição dos resíduos não é normal.
-
-Quanto à homocedasticidade, pela análise do gráfico da \figurename~\ref{fig:4_3_2_homocedasticidade}, podemos concluir que a condição de homocedasticidade não é verificada. Isto acontece pois a dispersão é maior à medida que os valores previstos aumentam ou diminuem, em vez de estarem distribuídos aleatoriamente em torno de zero, num padrão aleatório.
-
-Por último, verifica-se a independência dos resíduos, aplicando o teste de \textit{Durbin-Watson}. O resultado deste teste é de 1,25, por isso, consideramos que os resíduos não são independentes.
-
-Como as condições de normalidade, homocedasticidade e independência dos resíduos não se verificam, não podemos efetuar inferência estatística com estes dados.
-
-
-\begin{figure}
+\begin{table}[ht]
 	\centering
-	\includegraphics[width=0.9\linewidth]{4_3_2b}
-	\caption{Normalidade dos resíduos.}
-	\label{fig:qqplot}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\linewidth]{4_3_2_homocedasticidade}
-	\caption{Homocedasticidade dos resíduos.}
-	\label{fig:4_3_2_homocedasticidade}
-\end{figure}
-\medskip
-\paragraph{\textbf{Verificar se existe colinearidade (VIF)}}
-
-Para se efetuar esta verificação utiliza-se o fator de inflação da variância.  
-
-O valor do fator de inflação de variância das variáveis \textit{X1} e \textit{X2}, visível na \tablename~\ref{tab:vif}, é inferior a 5, logo não existe multicolinearidade.
-
-
-\begin{table}[h]
-	\caption{Valores de VIF para as variáveis do modelo}
-	\begin{center}
-		\begin{tabular}{|c|c|}
-			\hline
-			Variáveis & VIF \\
-			\hline
-			constante & 77,22 \\
-			
-			X1 & 1,000382 \\
-	
-			X2 & 1,000382 \\
-			\hline
-		\end{tabular} 
-		\label{tab:vif}
-	\end{center}
-\end{table}
-
-\medskip
-\paragraph{\textbf{Comentar o modelo obtido tendo em conta todas as características relevantes para a qualidade do modelo}}
-
-O valor do coeficiente de determinação R$^2$ = 0.768 indica que o modelo explica 76,8\% da variabilidade de Y (número de mortes), por isso, existe um ajuste aceitável entre o modelo e os dados, mas que seria melhor se o valor fosse superior.
-
-O \textit{p-value} da estatística-F é 0 logo os valores de R$^2$ e R$^2$aj são estatisticamente significantes.
-
-
-Não existe multicolinearidade, as variáveis \textit{X1} e \textit{X2} são estatisticamente independentes o suficiente para que seus coeficientes possam ser interpretados de forma confiável.
-
-Por último, de acordo com as conclusões das alíneas anteriores, as condições de normalidade, homocedasticidade e independência dos resíduos não se verificam, não podemos efetuar inferência estatística com estes dados. 
-
-\medskip
-\paragraph{\textbf{Estimar o número de mortes para a regiões com NUTS Code: DE131,DE132,DE133, DE134 ,DE135, DE136, DE137,DE138 e DE139 e compare com os valores reais}}
-
-
-Aplicando a equação \eqref{eq:modelo} do modelo aos dados disponíveis, obtém-se o número de mortes estimadas para cada localização. 
-
-Comparando com os dados reais, na \tablename~\ref{tab:mortes_esperadas}, podemos concluir que existe uma discrepância significativa, não só em valor mas também em sinal, onde temos previsões de valores negativos, o que não faz sentido para o contexto do problema.
-Tal pode-se dever à questão do ajuste da equação do modelo com os dados, por apenas 76,8\% da variabilidade de mortes ser justificada pelo modelo.
-
-
-\begin{table}[h]
-	\centering
-		\caption{Estimativa de Mortes Esperadas por Região}
-	\begin{tabular}{|c|c|c|}
+	\caption{Exatidão da árvore de decisão por profundidade}
+	\begin{tabular}{|c|c|}
 		\hline
-		\textbf{NUTS Code} & \textbf{Mortes Esperadas} & \textbf{Mortes Reais} \\
+		\textbf{Profundidade da Árvore} & \textbf{Exatidão} \\
 		\hline
-		DE131 & -194.0 & 226.0 \\
-		DE132 & -184.0 & 255.0 \\
-		DE133 & -178.0 & 177.0 \\
-		DE134 & 362.0  & 513.0 \\
-		DE135 & -388.0 & 108.0 \\
-		DE136 & -522.0 & 146.0 \\
-		DE137 & -503.0 & 100.0 \\
-		DE138 & -27.0  & 306.0 \\
-		DE139 & -213.0 & 251.0 \\
+		1  & 0.697 \\
+		2  & 0.731 \\
+		3  & 0.746 \\
+		4  & 0.764 \\
+		5  & 0.775 \\
+		6  & 0.786 \\
+		7  & 0.797 \\
+		8  & 0.803 \\
+		9  & 0.812 \\
+		10 & 0.817 \\
 		\hline
 	\end{tabular}
-	\label{tab:mortes_esperadas}
+	\label{tab:acc_tree_depth}
 \end{table}
+
+\medskip
+
+\paragraph{Rede Neuronal}
+
+Iniciamos a abordagem de forma análoga ao problema anterior, contudo, desta vez, fazemos a codificação da variável objetivo recorrendo ao \textit{LabelEncoder}, que lhe atribui valores binários (0 e 1).
+
+Depois da separação dos dados em treino e teste, é feita a sua normalização recorrendo ao \textit{MinMaxScaler}, uma vez que as variáveis preditoras têm valores de magnitude muito distantes.
+
+Definiram-se 2 configurações possíveis para a rede neuronal - uma com 50 neurónios na \textit{hidden layer} e a segunda com duas camadas - 100 e 50 na mesma \textit{layer}. Em comum, estas configurações têm a função ativação (\textit{tanh}), parâmetro \textit{alpha} (0,01), \textit{solver} (\textit{lbfgs}) e numero máximo de iterações ($max\_iter = 500$).
+
+Outros parâmetros foram testados como o \textit{solver} "adam" mas obtiveram-se resultados inferiores de exatidão.
+
+Entre estas duas configurações, a segunda (100,50) revelou-se um pouco melhor a nível de performance. 
+
+\medskip
+
+\paragraph{SVM}
+
+O método de SVM, ao contrário da rede neuronal, necessita dos dados normalizados com o \textit{StandardScaler}. 
+
+Para este algoritmo foi utilizado o método SVC - \textit{Support Vector Classification}, com parâmetros C = 10 e C = 100. e usando o \textit{Kernel rbf}.
+
+Na \figurename~\ref{fig:arvoreDecisaoCM} podemos visualizar a comparação entre os dois modelos, em que C=100 obtém uma ligeira vantagem.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{svm_compare}
+	\caption{Comparação entre resultados de SVM para C=10 e C=100.}
+	\label{fig:svm_compare}
+\end{figure}
+
+
+\medskip
+
+\paragraph{K-vizinhos-mais-próximos}
+
+
 
 
 \section*{Conclusões}
