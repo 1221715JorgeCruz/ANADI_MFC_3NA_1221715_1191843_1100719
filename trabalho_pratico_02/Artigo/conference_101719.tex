@@ -330,76 +330,154 @@ Para a variável 'Air Pollution Average[ug/m3]', inicialmente procedeu-se à eli
 
 Neste exercício era pretendida a divisão dos países por regiões. Foi então utilizado um mapa de países por regiões, sendo criada uma nova coluna, 'Region' que guarda a respetiva região para o país considerado.
 
-\subsection{Inferência Estatistica}
 \medskip
-\subsubsection{\textbf{Exercício 4.2.1}}
+\subsection{Regressão}
 
-Neste exercício é necessário selecionar uma amostra aleatória de 50 registos dos níveis médios de poluição em Portugal e analisar a sua distribuição.
+Esta seção apresenta uma análise detalhada da aplicação de modelos de regressão para prever mortes prematuras (\textit{Premature\_Deaths}) em países do sul da Europa (Grécia, Espanha, Itália e Portugal), utilizando o conjunto de dados \textit{AIRPOL\_data}. A análise inclui a exploração de correlações, a implementação de modelos de regressão (Regressão Linear Simples, Regressão Linear Múltipla, Árvore de Regressão, SVM e MLPRegressor), e a comparação estatística dos melhores modelos. Os resultados são apresentados com métricas de desempenho, funções de regressão, parâmetros otimizados e figuras ilustrativas.
 
-Filtrou-se os dados apenas para Portugal, realizou-se uma amostragem aleatória de 50 registos, calculou-se estatísticas descritivas e gerou-se um gráfico de barras da \figurename~\ref{fig:polportugal}.
+\medskip
+\subsubsection{\textbf{Exercício 4.2.1 - Análise de Correlação}}
 
-A região mais poluída é a PT119 com um valor médio de poluição de 24,82 $\mu$g/m$^3$.
+A análise de correlação foi conduzida utilizando o coeficiente de Spearman para avaliar a relação entre \textit{Premature\_Deaths} e variáveis preditoras, incluindo \textit{Affected\_Population}, \textit{Populated\_Area[km2]}, \textit{Air\_Pollution\_Average[ug/m3]}, e variáveis categóricas codificadas (\textit{Air\_Pollutant} e \textit{Outcome}). O método de Spearman foi escolhido devido à presença de distribuições não normais, conforme identificado na análise exploratória.
 
-\begin{figure}
+% Resultados da correlação
+A matriz de correlação, ilustrada na \figurename~\ref{fig:correlation_heatmap}, revela que \textit{Affected\_Population} apresenta a maior correlação positiva com \textit{Premature\_Deaths} (coeficiente próximo de 0,5), indicando que áreas com maior população afetada tendem a registrar mais mortes prematuras. A variável \textit{Air\_Pollution\_Average[ug/m3]} mostrou correlação moderada, enquanto \textit{Populated\_Area[km2]} apresentou correlação fraca. Entre os poluentes, o PM2.5 demonstrou maior associação com mortes prematuras, seguido por NO2, enquanto O3 apresentou correlação negativa. Doenças como Asma e AVC exibiram correlações positivas significativas, conforme destacado no gráfico de barras da \figurename~\ref{fig:correlation_bar}. Estas observações reforçam a influência da densidade populacional e de poluentes específicos na mortalidade prematura, justificando sua inclusão nos modelos de regressão.
+
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\linewidth]{pol_portugal.png}
-	\caption{Distribuição dos níveis de poluição por região em Portugal}
-	\label{fig:polportugal}
+	\includegraphics[width=0.9\linewidth]{matrix_correlacao}
+	\caption{Matriz de correlação (Spearman) para variáveis preditoras e \textit{Premature\_Deaths} no sul da Europa.}
+	\label{fig:correlation_heatmap}
 \end{figure}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{correlacao_barras}
+	\caption{Correlações de Spearman com \textit{Premature\_Deaths}, destacando \textit{Affected\_Population} e poluentes como PM2.5.}
+	\label{fig:correlation_bar}
+\end{figure}
+
+
+% Visão geral dos modelos
+Foram implementados os seguintes modelos: Regressão Linear Simples, Regressão Linear Múltipla, Árvore de Regressão, Support Vector Machine (SVM) e MLPRegressor (Rede Neural). Cada modelo foi avaliado utilizando validação cruzada \textit{k-fold} (k=5), com métricas de Erro Médio Absoluto (MAE), Raiz do Erro Quadrático Médio (RMSE) e Coeficiente de Determinação (R²). Os dados foram normalizados para garantir comparabilidade, especialmente para SVM e MLPRegressor, que são sensíveis à escala.
+
 \medskip
-\subsubsection{\textbf{Exercício 4.2.2}}
+\subsubsection{\textbf{Exercício 4.2.2 - Regressão Linear Simples}}
 
-Nesta questão vamos testar se o valor médio de poluição em Portugal é inferior ao da Albânia.
+% Função e métricas
+A Regressão Linear Simples foi aplicada considerando apenas \textit{Affected\_Population} como preditor. A função obtida é:
 
-Selecionaram-se amostras independentes de 50 registos para cada país, verificou-se a normalidade usando o teste de \textit{Shapiro-Wilk} e a  homogeneidade de variâncias recorrendo ao teste de \textit{Levene}. 
+\begin{equation}
+	\text{Premature\_Deaths} = 0{,}224 \cdot \text{Affected\_Population} - 0{,}000
+\end{equation}
 
-Aplicou-se o teste \textit{t-Student} unilateral ($H_{0}: \mu_{\text{Portugal}} \geq \mu_{\text{Albânia}}$ vs $H_{1}: \mu_{\text{Portugal}} < \mu_{\text{Albânia}}$)
+As métricas de desempenho, obtidas via validação cruzada, são: MAE médio de 0,005 (desvio padrão 0,000), RMSE médio de 0,022 (desvio padrão 0,004) e R² de 0,317. Estes resultados indicam que o modelo explica 31,7\% da variância, mas é limitado por considerar apenas uma variável preditora.
 
-	\begin{table}[H]
-		\centering
-		\caption{Resultados dos testes estatísticos}
-		\begin{tabular}{lcc}
-			\toprule
-			Teste & Estatística & p-valor \\
-			\midrule
-mer			Shapiro-Wilk (PT) & 0.2743 & 0.000 \\
-			Shapiro-Wilk (AL) & 0.3545 & 0.000 \\
-			Levene & 0.4467 & 0.5055 \\
-			Teste t & -1.1860 & 0.1192 \\
-			\bottomrule
-		\end{tabular}
-	\end{table}
-
-Como p\textless0,05, rejeita-se $H_{0}$, concluindo-se que a poluição em Portugal é significativamente inferior à da Albânia, para um grau de confiança de 5\%.
 \medskip
-\subsubsection{\textbf{Exercício 4.2.3}}
+\subsubsection{\textbf{Exercício 4.2.3a - Regressão Linear Multipla}}
 
-Nesta alínea vamos verificar se há diferenças significativas nos níveis de poluição entre Espanha e França, para isso extraíram-se duas amostras independentes de 20 registos cada.
+% Função da regressão múltipla
+A Regressão Linear Múltipla incorporou múltiplas variáveis preditoras, resultando na seguinte função:
 
-Testou-se a normalidade usando o teste de \textit{Shapiro-Wilk}, cujo resultado mostrou que os dados não seguem uma distribuição normal.
+Premature\_Deaths = -0.016 + (0.166) * Affected\_Population 
 
-Aplicou-se, então, o teste não paramétrico \textit{Mann-Whitney-U}.
++ (0.065) * Populated\_Area[km2] 
 
-	\begin{table}[H]
-		\centering
-		\caption{Resultados dos testes estatísticos}
-		\begin{tabular}{lcc}
-			\toprule
-			Teste & Estatística & p-valor \\
-			\midrule
-			Shapiro-Wilk (ES) & 0.5459 & 0.0000 \\
-			Shapiro-Wilk (FR) & 0.3241 & 0.0000 \\
-			Mann-Whitney U & 222.5000 & 0.5514 \\
-			\bottomrule
-		\end{tabular}
-	\end{table}
++ (0.048) * Air\_Pollution\_Average[ug/m3] 
 
-Como p \textgreater 0.05, não há evidência de diferença significativa entre os dois países. 
++ (0.010) * Air\_Pollutant\_NO2 
+
++ (-0.024) * Air\_Pollutant\_O3 
+
++ (0.014) * Air\_Pollutant\_PM2.5 
+
++ (-0.003) * Outcome\_Asthma 
+
++ (-0.002) * Outcome\_Chronic obstructive pulmonary disease 
+
++ (0.002) * Outcome\_Diabetes Mellitus 
+
++ (0.002) * Outcome\_Ischemic heart disease 
+
++ (0.000) * Outcome\_Lung cancer 
+
++ (0.001) * Outcome\_Stroke
+
 \medskip
-\subsubsection{\textbf{Exercício 4.2.4}}
 
-	
+% Métricas e MAE fold-wise
+Os MAE \textit{fold-wise} foram: [0,005541, 0,005972, 0,006128, 0,006050, 0,005922]. As métricas de desempenho são: MAE médio de 0,006 (desvio padrão 0,000), RMSE médio de 0,022 (desvio padrão 0,004) e R² de 0,338. O modelo explica 33,8\% da variância, superando a regressão simples, mas ainda limitado por relações não lineares.
+
+\medskip
+\subsubsection{\textbf{Exercício 4.2.3b - Árvore de Regressão}}
+
+% Parâmetros e métricas
+A Árvore de Regressão foi otimizada com os parâmetros: \texttt{max\_depth=7} e \texttt{min\_samples\_split=10}. Os MAE \textit{fold-wise} foram: [0,004656, 0,004834, 0,004450, 0,004857, 0,004878]. As métricas de desempenho são: MAE médio de 0,005 (desvio padrão 0,000), RMSE médio de 0,024 (desvio padrão 0,004) e R² de aproximadamente 0,350. O MAE inferior indica alta precisão média, mas o RMSE maior sugere sensibilidade a outliers.
+
+\medskip
+\subsubsection{\textbf{Exercício 4.2.3c - SVM}}
+
+% Parâmetros e métricas
+O SVM, com kernel RBF, foi otimizado com: \texttt{C=1}, \texttt{epsilon=0.01}. Os MAE \textit{fold-wise} foram: [0,007430, 0,007480, 0,007153, 0,006896, 0,007289]. As métricas são: MAE médio de 0,007 (desvio padrão 0,000), RMSE médio de 0,024 (desvio padrão 0,005) e R² de aproximadamente 0,350. O desempenho inferior e maior variabilidade no RMSE indicam menor robustez.
+
+\medskip
+\subsubsection{\textbf{Exercício 4.2.3d - Rede Neuronal}}
+
+% Parâmetros e métricas
+O MLPRegressor foi otimizado com: \texttt{hidden\_layer\_sizes=(100,)}, \texttt{activation=relu}, \texttt{learning\_rate\_init=0.001}, \texttt{max\_iter=1000}. Os MAE \textit{fold-wise} foram: [0,006071, 0,005721, 0,006634, 0,005674, 0,005796]. As métricas são: MAE médio de 0,006 (desvio padrão 0,000), RMSE médio de 0,023 (desvio padrão 0,004) e R² de 0,452. O R² superior destaca a capacidade do modelo em capturar relações complexas.
+
+\medskip
+\subsubsection{\textbf{Exercício 4.2.4 - Rede Comparação de Desempenho}}
+
+% Tabela de métricas
+A tabela apresenta a comparação das métricas de desempenho dos quatro modelos. A Regressão Linear Múltipla obteve o menor RMSE (0,022), indicando robustez contra erros maiores. A Árvore de Regressão apresentou o menor MAE (0,005), sugerindo maior precisão média. O MLPRegressor, com RMSE de 0,023 e R² de 0,452, destacou-se em explicação da variância. O SVM teve o pior desempenho, com MAE de 0,007 e maior variabilidade no RMSE.
+
+\begin{table}[h]
+	\centering
+	\caption{Comparação de desempenho dos modelos de regressão (tabela invertida).}
+	\label{tab:model_comparison_inverted}
+	\begin{tabular}{lcccc}
+		\toprule
+		\textbf{Métrica} & \textbf{RLM} & \textbf{Árv Reg} & \textbf{SVM} & \textbf{MLPRegressor} \\
+		\midrule
+		MAE Médio        & 0,006 & 0,005 & 0,007 & 0,006 \\
+		Std MAE          & 0,000 & 0,000 & 0,000 & 0,000 \\
+		RMSE Médio       & 0,022 & 0,024 & 0,024 & 0,023 \\
+		Std RMSE         & 0,004 & 0,004 & 0,005 & 0,004 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\medskip
+\subsubsection{\textbf{Exercício 4.2.5 - Análise Estatística dos Melhores Modelos}}
+
+% Seleção dos melhores modelos
+Os dois melhores modelos, Árvore de Regressão (MAE médio = 0,005) e Regressão Linear Múltipla (RMSE médio = 0,022), foram comparados estatisticamente para verificar se a diferença no MAE é significativa, com nível de significância de 5\%. Os MAE \textit{fold-wise} foram utilizados: Árvore de Regressão ([0,004656, 0,004834, 0,004450, 0,004857, 0,004878]) e Regressão Linear Múltipla ([0,005541, 0,005972, 0,006128, 0,006050, 0,005922]).
+
+% Teste de normalidade
+Um teste de Shapiro-Wilk foi aplicado às diferenças entre os MAE, resultando em uma estatística de 0,893 e p-valor de 0,370 ($>$ 0,05), indicando que as diferenças seguem uma distribuição aproximadamente normal. Assim, um teste t pareado foi conduzido.
+
+% Resultados do teste t
+O teste t resultou em uma estatística de -8,912 e p-valor de 0,001 ($<$ 0,05), rejeitando a hipótese nula de igualdade entre as médias. A \tablename~\ref{tab:stat_test} resume os resultados.
+
+\begin{table}[h]
+	\centering
+	\caption{Resultados do teste estatístico.}
+	\label{tab:stat_test}
+	\begin{tabular}{lc}
+		\toprule
+		\textbf{Teste} & \textbf{Resultado} \\
+		\midrule
+		Shapiro-Wilk (Normalidade) & Estatística = 0,893, p-valor = 0,370 \\
+		Teste t (MAE) & t-statistic = -8,912, p-valor = 0,001 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+% Interpretação
+A diferença no MAE é estatisticamente significativa, com a Árvore de Regressão apresentando melhor desempenho (MAE médio = 0,004735 vs. 0,005923). No entanto, a Regressão Linear Múltipla é mais robusta contra erros maiores, conforme indicado pelo RMSE.
+
+
 \subsection{Classificação}\label{AA}
 
 \subsubsection{\textbf{Exercício 4.3.1}}
@@ -565,7 +643,7 @@ Por fim, o modelo KNN demonstrou o pior desempenho geral, com a menor \textit{ac
 
 Da análise exploratória de dados, foi possível verificar que todas as regiões portuguesas apresentam um nível médio de O3 situado entre os 80 e os 102.4 ug/m3. A região com o maior valor médio de poluente é PT16H com um valor de 102.4 µg/m3.
 
-Relativamente à concentração do poluente PM2.5 foram analisados os países Portugal, Espanha, França e Itália. Itália é o país que apresenta os valores mais elevados, sendo observados outliers e uma grande dispersão de dados. Portugal e França apresentam níveis mais baixos de concentração de PM2.5.
+Relativamente à Conclusãoconcentração do poluente PM2.5 foram analisados os países Portugal, Espanha, França e Itália. Itália é o país que apresenta os valores mais elevados, sendo observados outliers e uma grande dispersão de dados. Portugal e França apresentam níveis mais baixos de concentração de PM2.5.
 
 A média de mortes permaturas tende a seguir valores baixos, embora se tenham verificado outliers. Itália destaca-se pelo país com os números mais extremos de mortes permaturas. Portugal é o país que apresenta menor dispersão e valores menores de mortes permaturas.
 
