@@ -241,87 +241,94 @@ O algoritmo do k-vizinho mais próximo é usado em projetos de classificação c
 \medskip
 \subsubsection{\textbf{Exercício 4.1.1}}
 
-Neste exercício era pretendida a construção de um gráfico onde fosse possível verificar os níveis médios do poluente O$_3$ nas diversas regiões de Portugal. Era também requisito identificar a região com nível de O$_3$ mais elevado. Foram então importados os dados onde constava essa informação (ficheiro AIRPOL$\_$data).  
+Neste exercício era pretendido o carregamento dos dados, a sua dimensão e respetivo sumário. 
+Começamos então por carregar os dados provenientes do ficheiro AIRPOL\_data. Verificamos que o mesmo possui 49140 linhas e 16 colunas. De seguida, através da função df.info(), foi possível verificar a existência de colunas vazias ("Unnamed"), que foram eliminadas. Com a função df.describe(), obtivemos a análise estatística representada na figura \ref{fig:Statistics}.
 
-Para uma melhor visualização dos dados e para utilizarmos apenas os dados necessários, filtramos os mesmos. Assim, foram selecionados apenas os dados correspondentes a Portugal e cujo poluente em questão seja O$_3$. Verificamos a existência de alguns dados duplicados, o que nos levou à eliminação dos mesmos de modo a limpar o \textit{dataset}.
- 
-O gráfico obtido pode ser observado na \figurename~\ref{fig:nivelmedioo3}. É possível então verificar que todas as regiões apresentam um nível médio de O$_3$ situado entre os 80 e os 102.4 µg/m$^3$. A região com o maior valor médio de poluente é PT16H com um valor de 102.4 µg/m$^3$.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{statistics}
+	\caption{Resumo estatístico do Dataframe}
+	\label{fig:Statistics}
+\end{figure}
 
 
 \medskip
 \subsubsection{\textbf{Exercício 4.1.2}}
 
-Pretendia-se a construção de um gráfico para comparação das distribuições dos níveis médios de PM2.5 em Portugal, Espanha, França e Itália. 
+Pretendia-se a exploração dos dados com os gráficos mais adequados. Em primeiro lugar identificamos as variáveis previsoras e as varáveis alvo. Relativamente às variáveis previsoras temos: 'Affected\_Population', 'Populated\_Area[km2]', 'Air\_Pollution\_Average[ug/m3]', 'Country', 'NUTS\_Code' e 'Air\_Pollutant'. Destas, 'Affected\_Population', 'Populated\_Area[km2]', 'Air\_Pollution\_Average[ug/m3]' eram variáveis contínuas pelo que recorremos à utilização de histogramas e \textit{boxplots} para visualizar as suas distribuições. Concluímos que todas elas apresentam distribuições próximas da distribuição normal com a presença considerável de \textit{outliers}. Esses \textit{outliers} levaram a uma necessidade de analisar mais detalhadamente estes dados por país e por poluente pois estas variações podem estar relacionadas com esses fatores. 
 
-Inicialmente, os dados foram importados e filtrados. Como tal, foram selecionados apenas os dados correspondentes aos países mencionados anteriormente e cujo poluente em questão fosse PM2.5. Verificamos a existência de alguns dados duplicados, o que nos levou à eliminação dos mesmos de modo a limpar o dataset.
-
-O gráfico obtido pode ser observado na \figurename~\ref{fig:niveismediospm25}. É possível então concluir o seguinte:
-
-- Itália é o país que apresenta os valores mais elevados de PM2.5. Apresenta \textit{outliers} e uma grande dispersão de dados.
-
-- Portugal e França apresentam níveis mais baixos de concentração de PM2.5. Estes dois países também apresentam a menor dispersão. França, apresenta um número de outliers mais elevado do que Portugal.
-
-- Espanha, encontra-se entre os grupos de países mencionados anteriormente. A sua dispersão é superior à de Portugal e França.
-
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{Niveis_medios_pm25}
-	\caption{Distribuição dos níveis médios de PM2.5 por País}
-	\label{fig:niveismediospm25}
+	\includegraphics[width=1\linewidth]{PopArea}
+	\caption{Distribuição da variável 'Populated Area[km2]'}
+	\label{fig:PopArea}
 \end{figure}
+
+De seguida, analisamos as variáveis previsoras discretas ('Country', 'NUTS\_Code' e 'Air\_Pollutant') e verificamos que os países com mais dados disponíveis são Alemanha, Itália e França por esta ordem. Denotamos também a existência de um número consideravelmente superior de registos para o poluente PM2.5, seguindo-se o poluente NO2 e O3.
+
+Relativamente à relação das variáveis 'Affected\_Population', 'Populated\_Area[km2]', 'Air\_Pollution\_Average[ug/m3]' com o país, 'NUTS\_Code' e poluente, tiramos as seguintes conclusões:
+\begin{itemize}
+	\item Para as variáveis população afetada, área populacional e poluição média do ar, verificam-se diferenças nas distribuições destes valores por país, o que poderá justificar a grande presença de outliers quando analisámos estas variáveis individualmente.
+	\item Todas as variáveis apresentam um elevado número de outliers por país, com destaque para a variável poluição média do ar, onde a quantidade de outliers se destaca em relação às outras variáveis numéricas.
+	\item Desta visualização, há que salientar os elevados valores de poluição média[ug/m3] para o poluente O3 em relação aos outros dois poluentes.  
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{AirPollutionAvgByCountry}
+	\caption{Distribuição de 'Air Pollution Average' por país}
+	\label{fig:AvgByCountry}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{AirPollutionAvgByPollutant}
+	\caption{Distribuição de 'Air Pollution Average' por poluente}
+	\label{fig:AvgByPollutant}
+\end{figure}
+
+Da análise das varáveis alvo (Doença associada ao poluente e Mortes prematuras), concluímos:
+\begin{itemize}
+	\item Relativamente às doenças registadas, ocorreram mais registos de Asma, AVC e Diabetes.
+	\item A variável 'Value' correspondente às mortes prematuras apresenta uma distribuição assimétrica à direita, o que resulta numa elevada concentrção de valores baixos.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ValueDist}
+	\caption{Distribuição de 'Value' (Mortes prematuras)}
+	\label{fig:AvgByCountry}
+\end{figure}
+
+Por último foi realizada uma análise bivariada onde cruzamos informação de variáveis previsoras com variáveis alvo. Desta análise obtivemos as seguintes conclusões:
+\begin{itemize}
+	\item Relativamente à relação entre as doenças e o nível médio de poluente no ar[ug/m3], verifica-se que este apresenta valores semelhantes em todas as doenças com exceção da doença pulmonar crónica onde os dados mostram que para esta doença, os níveis de poluente são mais elevados.
+	\item Verificou-se também que o valores mais elevados do nível médio de poluente, não produzem necessariamente mais mortes prematuras. É possível verificar pelo gráfico que cruza as informações relativamente ao nível de poluente e ao número de mortes prematuras, que o poluente O3 apresenta os valores mais elevados em termos de concentração média do poluente mas é o que produz menos mortes. Já no caso do PM2.5, verificamos exatamente o contrário: valores menores e mais mortes prematuras.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{AirPolValuePollutant}
+	\caption{Poluente vs. Mortes prematuras}
+	\label{fig:AvgByPollutant}
+\end{figure}
+
+
 
 \medskip
 \subsubsection{\textbf{Exercício 4.1.3}}
 
-O objetivo deste exercício consiste na construção de um gráfico para comparação do número de mortes prematuras entre Portugal, Espanha, França e Itália. 
+Na fase de pré-processamento de dados foram seguidos os seguintes passos: eliminação de dados vazios, eliminação de dados duplicados e remoção de outliers. 
 
-Os dados foram importados e filtrados. Como tal, foram selecionados apenas os dados correspondentes aos países mencionados. Para melhor visualização do dataframe, selecionamos apenas as colunas correspondentes ao país e ao valor de mortes prematuras. 
+Da análise realizada anteriormente, verificamos uma grande presença de outliers nas variáveis 'Value' e 'Air Pollution Average[ug/m3]'.
+Desta forma, decidimos eliminar os outliers destas duas variáveis para obtermos dados mais fiáveis e ao mesmo tempo não restringir o dataset de forma significativa. 
 
-O gráfico obtido pode ser observado na \figurename~\ref{fig:mortesprematuras}. É possível então concluir o seguinte:
-
-- A média de mortes prematuras tende a seguir valores baixos, embora sejam visíveis \textit{outliers}.
-
-- Itália destaca-se pelo país com os números mais extremos de mortes prematuras.
-
-- Portugal é o país que apresenta menor dispersão e valores menores de mortes prematuras.
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\linewidth]{mortes_prematuras}
-	\caption{Distribuição do número de mortes prematuras por País}
-	\label{fig:mortesprematuras}
-\end{figure}
-
+Para a variável 'Air Pollution Average[ug/m3]', inicialmente procedeu-se à eliminação dos outliers por país. No entanto, devido aos elevados valores desta variável para o poluente O3, os dados para este mesmo poluente eram completamente eliminados. A solução passou por eliminar os outliers por poluente e não por país. Isto resultou na permanência de um elevado número de outliers por país que serão referentes às concentrações para o poluente O3.
 
 \medskip
 \subsubsection{\textbf{Exercício 4.1.4}}
 
-Neste exercício era pretendida a construção de uma tabela que indicasse os valores da média, quartis, desvio padrão, assimetria e \textit{Kurtosis} relativa ao número de mortes prematuras associadas a Stroke para os seguintes países: Espanha, França, Itália e Grécia. Foram então importados os dados onde constava essa informação (ficheiro AIRPOLdata). 
- 
-Para uma melhor visualização dos dados e para utilizarmos apenas os dados necessários, filtramos os mesmos. Assim, foram selecionados apenas os dados correspondentes aos países mencionados e cujas mortes prematuras estivessem associadas a AVC (Stroke). 
-
-Da tabela apresentada na figura \figurename~\ref{fig:valoresestatisticos}, é possível concluir o seguinte:
-
-- O valor da média varia entre os diferentes países. É notório que Itália regista o maior número de mortes prematuras por AVC. França regista a menor média.
-
-- Relativamente aos quartis, Itália apresenta os valores mais elevados para os mesmos, reforçando a tendência para os valores elevados. Esta medida ajuda a entender a dispersão dos dados.
-
-- Itália apresenta também o desvio-padrão mais elevado, o que prova mais uma vez a sua grande disperão de dados. França apresenta o menor desvio-padrão e consequente menor dispersão.
-
-- O coeficiente de assimetria é positivo. Isto indica que a distribuição tem uma cauda longa à direita. Logo, os países registam valores elevados de mortes prematuras por AVC. França e Itália apresentam os valores mais altos, o que indica que apresentam os outliers mais elevados.
-
-- Os países registam uma Kurtosis elevada. Isto indica que há valores extremos a influenciar os dados. França e Itália reforçam a sua grande presença de \textit{outliers}.
-
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\linewidth]{ValoresEstatísticosAVC}
-	\caption{Valores da média, quartis, desvio padrão, assimetria e kurtosis, do número de mortes prematuras associado a AVC}
-	\label{fig:valoresestatisticos}
-\end{figure}
-
+Neste exercício era pretendida a divisão dos países por regiões. Foi então utilizado um mapa de países por regiões, sendo criada uma nova coluna, 'Region' que guarda a respetiva região para o país considerado.
 
 \subsection{Inferência Estatistica}
 \medskip
