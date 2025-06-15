@@ -14,6 +14,8 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}1}Mean Absolute Error - MAE}{1}{}\protected@file@percent }
 \newlabel{MAEeq}{{3}{1}{}{equation.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}2}Mean Squared Error - MSE}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}3}Root Mean Squared Error - RMSE}{1}{}\protected@file@percent }
+\newlabel{RMSEeq}{{4}{1}{}{equation.4}{}}
 \citation{madureira2024cv}
 \citation{madureira2024dt}
 \citation{madureira2024dt}
@@ -22,8 +24,8 @@
 \citation{refaeilzadeh_cross-validation_2009}
 \citation{madureira2024cv}
 \citation{madureira2024cv}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}3}Root Mean Squared Error - RMSE}{2}{}\protected@file@percent }
-\newlabel{RMSEeq}{{4}{2}{}{equation.4}{}}
+\citation{madureira2024nn}
+\citation{madureira2024svm}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-B}4}R$^2$ - Coeficiente de Determinação}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Árvores de Decisão}{2}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Exemplo de árvore de decisão. \cite  {madureira2024dt}}}{2}{}\protected@file@percent }
@@ -34,73 +36,67 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-D}1}Hold Out}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-D}2}K-Fold Cross-Validation}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-E}}Redes Neuronais}{2}{}\protected@file@percent }
-\citation{madureira2024nn}
-\citation{madureira2024svm}
 \citation{madureira2024svm}
 \citation{madureira2024knn}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Exemplo de rede neuronal.}}{3}{}\protected@file@percent }
 \newlabel{fig:nn}{{2}{3}{}{figure.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-F}}Support Vector Machines - SVM}{3}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Hiperplano, vetores de suporte e margem - SVM.}}{3}{}\protected@file@percent }
 \newlabel{fig:svm}{{3}{3}{}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-F}}Support Vector Machines - SVM}{3}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-G}}kNN - K-Vizinhos Mais Próximos}{3}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {III}Métodos e Resultados Obtidos}{3}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Análise Exploratória de Dados}{3}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}1}\textbf  {Exercício 4.1.1}}{3}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Resumo estatístico do Dataframe}}{3}{}\protected@file@percent }
 \newlabel{fig:Statistics}{{4}{3}{}{figure.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}2}\textbf  {Exercício 4.1.2}}{4}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Distribuição da variável 'Populated Area[km2]'}}{4}{}\protected@file@percent }
-\newlabel{fig:PopArea}{{5}{4}{}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}2}\textbf  {Exercício 4.1.2}}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Distribuição da variável 'Populated Area[km2]'}}{3}{}\protected@file@percent }
+\newlabel{fig:PopArea}{{5}{3}{}{figure.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Distribuição de 'Air Pollution Average' por país}}{4}{}\protected@file@percent }
 \newlabel{fig:AvgByCountry}{{6}{4}{}{figure.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Distribuição de 'Air Pollution Average' por poluente}}{4}{}\protected@file@percent }
 \newlabel{fig:AvgByPollutant}{{7}{4}{}{figure.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Distribuição de 'Value' (Mortes prematuras)}}{4}{}\protected@file@percent }
 \newlabel{fig:AvgByCountry}{{8}{4}{}{figure.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Poluente vs. Mortes prematuras}}{5}{}\protected@file@percent }
-\newlabel{fig:AvgByPollutant}{{9}{5}{}{figure.9}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}3}\textbf  {Exercício 4.1.3}}{5}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Poluente vs. Mortes prematuras}}{4}{}\protected@file@percent }
+\newlabel{fig:AvgByPollutant}{{9}{4}{}{figure.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}3}\textbf  {Exercício 4.1.3}}{4}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}4}\textbf  {Exercício 4.1.4}}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Regressão}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}1}\textbf  {Exercício 4.2.1 - Análise de Correlação}}{5}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Matriz de correlação (Spearman) para variáveis preditoras e \textit  {Premature\_Deaths} no sul da Europa.}}{5}{}\protected@file@percent }
 \newlabel{fig:correlation_heatmap}{{10}{5}{}{figure.10}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Correlações de Spearman com \textit  {Premature\_Deaths}, destacando \textit  {Affected\_Population} e poluentes como PM2.5.}}{6}{}\protected@file@percent }
-\newlabel{fig:correlation_bar}{{11}{6}{}{figure.11}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}2}\textbf  {Exercício 4.2.2 - Regressão Linear Simples}}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}3}\textbf  {Exercício 4.2.3a - Regressão Linear Multipla}}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Correlações de Spearman com \textit  {Premature\_Deaths}, destacando \textit  {Affected\_Population} e poluentes como PM2.5.}}{5}{}\protected@file@percent }
+\newlabel{fig:correlation_bar}{{11}{5}{}{figure.11}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}2}\textbf  {Exercício 4.2.2 - Regressão Linear Simples}}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}3}\textbf  {Exercício 4.2.3a - Regressão Linear Multipla}}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}4}\textbf  {Exercício 4.2.3b - Árvore de Regressão}}{6}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}5}\textbf  {Exercício 4.2.3c - SVM}}{6}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}6}\textbf  {Exercício 4.2.3d - Rede Neuronal}}{6}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}7}\textbf  {Exercício 4.2.4 - Rede Comparação de Desempenho}}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}8}\textbf  {Exercício 4.2.5 - Análise Estatística dos Melhores Modelos}}{6}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comparação de desempenho dos modelos de regressão (tabela invertida).}}{6}{}\protected@file@percent }
 \newlabel{tab:model_comparison_inverted}{{I}{6}{}{table.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}8}\textbf  {Exercício 4.2.5 - Análise Estatística dos Melhores Modelos}}{6}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Resultados do teste estatístico.}}{7}{}\protected@file@percent }
-\newlabel{tab:stat_test}{{II}{7}{}{table.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Classificação}{7}{}\protected@file@percent }
-\newlabel{AA}{{\mbox  {III-C}}{7}{}{subsection.3.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}1}\textbf  {Exercício 4.3.1}}{7}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Resultados do teste estatístico.}}{6}{}\protected@file@percent }
+\newlabel{tab:stat_test}{{II}{6}{}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Classificação}{6}{}\protected@file@percent }
+\newlabel{AA}{{\mbox  {III-C}}{6}{}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}1}\textbf  {Exercício 4.3.1}}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}2}\textbf  {Exercício 4.3.2}}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {III-C}2a}Árvore de Decisão}{6}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Distribuição de valores entre doença Respiratória e Não-Respiratória.}}{7}{}\protected@file@percent }
 \newlabel{fig:grafico_doenca_respir}{{12}{7}{}{figure.12}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}2}\textbf  {Exercício 4.3.2}}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {III-C}2a}Árvore de Decisão}{7}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Matriz de Confusão do modelo final.}}{7}{}\protected@file@percent }
 \newlabel{fig:arvoreDecisaoCM}{{13}{7}{}{figure.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {III-C}2b}Rede Neuronal}{7}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Exatidão da árvore de decisão por profundidade}}{7}{}\protected@file@percent }
 \newlabel{tab:acc_tree_depth}{{III}{7}{}{table.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {III-C}2b}Rede Neuronal}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {III-C}2c}SVM}{8}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Comparação entre resultados de SVM para C=10 e C=100.}}{8}{}\protected@file@percent }
-\newlabel{fig:svm_compare}{{14}{8}{}{figure.14}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {III-C}2d}K-vizinhos-mais-próximos - kNN}{8}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces kNN - Valores de exatidão em função de número de vizinhos \textit  {k}.}}{8}{}\protected@file@percent }
-\newlabel{fig:kNN_exatidao_vs_k}{{15}{8}{}{figure.15}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}3}\textbf  {Exercício 4.3.3}}{8}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Desempenho dos Modelos de Classificação}}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}4}\textbf  {Exercício 4.3.4}}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}5}\textbf  {Exercício 4.3.5}}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {III-C}2c}SVM}{7}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Comparação entre resultados de SVM para C=10 e C=100.}}{7}{}\protected@file@percent }
+\newlabel{fig:svm_compare}{{14}{7}{}{figure.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\mbox  {III-C}2d}K-vizinhos-mais-próximos - kNN}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}3}\textbf  {Exercício 4.3.3}}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}4}\textbf  {Exercício 4.3.4}}{7}{}\protected@file@percent }
 \bibcite{madureira2024aed}{1}
 \bibcite{madureira2024cv}{2}
 \bibcite{moore2017}{3}
@@ -114,5 +110,9 @@
 \bibcite{madureira2024svm}{11}
 \bibcite{madureira2024knn}{12}
 \bibcite{montgomery2021}{13}
-\@writefile{toc}{\contentsline {section}{Refer\^encias}{9}{}\protected@file@percent }
-\gdef \@abspage@last{9}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces kNN - Valores de exatidão em função de número de vizinhos \textit  {k}.}}{8}{}\protected@file@percent }
+\newlabel{fig:kNN_exatidao_vs_k}{{15}{8}{}{figure.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Desempenho dos Modelos de Classificação}}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}5}\textbf  {Exercício 4.3.5}}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Refer\^encias}{8}{}\protected@file@percent }
+\gdef \@abspage@last{8}

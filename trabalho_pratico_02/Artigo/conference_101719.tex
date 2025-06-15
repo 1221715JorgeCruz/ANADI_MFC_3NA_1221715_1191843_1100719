@@ -30,10 +30,9 @@ Análise de Desempenho De Técnicas de Aprendizagem Automática}
 \author{\IEEEauthorblockN{Fábio Borges\IEEEauthorrefmark{1}, Joel Ferreira\IEEEauthorrefmark{2}, Jorge Cruz\IEEEauthorrefmark{3}}
 \IEEEauthorblockA{\textit{Departamento de Engenharia Informática}} \\
 \textit{Instituto Superior de Engenharia do Porto}\\
-Porto, Portugal \\
-\IEEEauthorrefmark{1} 1100719@isep.ipp.pt\\
-\IEEEauthorrefmark{2} 1191843@isep.ipp.pt\\
-\IEEEauthorrefmark{3} 1221715@isep.ipp.pt\\
+\IEEEauthorrefmark{1} 1100719@isep.ipp.pt
+\IEEEauthorrefmark{2} 1191843@isep.ipp.pt
+\IEEEauthorrefmark{3} 1221715@isep.ipp.pt
 }
 
 
@@ -132,7 +131,7 @@ A aprendizagem em árvore de decisão é um método de aproximação de uma fun�
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\linewidth]{Decision_Trees_example}
+	\includegraphics[width=0.5\linewidth]{Decision_Trees_example}
 	\caption{Exemplo de árvore de decisão. \cite{madureira2024dt}}
 	\label{fig:Decision_Trees_example}
 \end{figure}
@@ -195,7 +194,7 @@ Uma rede neuronal, \figurename~\ref{fig:nn}, consiste numa rede de neurónios ar
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{NN}
+	\includegraphics[width=0.7\linewidth]{NN}
 	\caption{Exemplo de rede neuronal.}
 	\label{fig:nn}
 \end{figure}
@@ -220,7 +219,7 @@ Terminologia:
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{svm}
+	\includegraphics[width=0.5\linewidth]{svm}
 	\caption{Hiperplano, vetores de suporte e margem - SVM.}
 	\label{fig:svm}
 \end{figure}
@@ -273,7 +272,7 @@ Relativamente à relação das variáveis 'Affected\_Population', 'Populated\_Ar
 	\item Desta visualização, há que salientar os elevados valores de poluição média[ug/m3] para o poluente O3 em relação aos outros dois poluentes.  
 \end{itemize}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\linewidth]{AirPollutionAvgByCountry}
 	\caption{Distribuição de 'Air Pollution Average' por país}
@@ -489,7 +488,7 @@ Derivando um novo atributo denominado \textit{RespDisease}, que separa as doenç
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\linewidth]{grafico_doenca_respir}
+	\includegraphics[width=0.6\linewidth]{grafico_doenca_respir}
 	\caption{Distribuição de valores entre doença Respiratória e Não-Respiratória.}
 	\label{fig:grafico_doenca_respir}
 \end{figure}
@@ -519,7 +518,7 @@ Tomando o valor máximo da exatidão entre os diferentes níveis, verifica-se qu
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\linewidth]{arvoreDecisaoCM}
+	\includegraphics[width=0.5\linewidth]{arvoreDecisaoCM}
 	\caption{Matriz de Confusão do modelo final.}
 	\label{fig:arvoreDecisaoCM}
 \end{figure}
@@ -573,7 +572,7 @@ Na \figurename~\ref{fig:arvoreDecisaoCM} podemos visualizar a comparação entre
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\linewidth]{svm_compare}
+	\includegraphics[width=0.7\linewidth]{svm_compare}
 	\caption{Comparação entre resultados de SVM para C=10 e C=100.}
 	\label{fig:svm_compare}
 \end{figure}
@@ -641,21 +640,20 @@ Por fim, o modelo KNN demonstrou o pior desempenho geral, com a menor \textit{ac
 
 \section*{Conclusões}
 
-Da análise exploratória de dados, foi possível verificar que todas as regiões portuguesas apresentam um nível médio de O3 situado entre os 80 e os 102.4 ug/m3. A região com o maior valor médio de poluente é PT16H com um valor de 102.4 µg/m3.
+Este artigo analisou diferentes técnicas de aprendizagem automática aplicadas à previsão de mortes prematuras e à distinção de doenças respiratórias, utilizando dados de poluição atmosférica em países europeus. Foram implementados e comparados modelos de regressão (linear simples, linear múltipla, árvore de regressão, SVM e rede neural) e de classificação (árvore de decisão, rede neural, SVM e kNN), avaliando o desempenho de cada abordagem através de métricas estatísticas como MAE, RMSE, R\textsuperscript{2}, accuracy, sensitivity, specificity e F1-score.
 
-Relativamente à Conclusãoconcentração do poluente PM2.5 foram analisados os países Portugal, Espanha, França e Itália. Itália é o país que apresenta os valores mais elevados, sendo observados outliers e uma grande dispersão de dados. Portugal e França apresentam níveis mais baixos de concentração de PM2.5.
+A árvore de regressão apresentou o menor erro absoluto médio (MAE), demonstrando elevada precisão média nas previsões de mortes prematuras, enquanto a regressão linear múltipla mostrou maior robustez contra erros de maior magnitude, refletido pelo menor RMSE.
 
-A média de mortes permaturas tende a seguir valores baixos, embora se tenham verificado outliers. Itália destaca-se pelo país com os números mais extremos de mortes permaturas. Portugal é o país que apresenta menor dispersão e valores menores de mortes permaturas.
+O modelo de rede neural destacou-se pelo maior coeficiente de determinação (R\textsuperscript{2}), evidenciando melhor capacidade de explicação da variância dos dados, especialmente em relações não lineares.
 
-Relativamente às mortes associadas a AVC, Itália volta a registar o maior número de mortes permaturas em relação aos países analisados (França, Grécia, Itália e Espanha).
+Nos modelos de classificação, o SVM com $C=100$ obteve a maior \textit{accuracy} (82,3\%) e especificidade (95,2\%), sendo o mais consistente e eficaz na identificação de doenças não respiratórias, embora com menor sensibilidade para os casos positivos.
 
-Da inferência estatistica podemos concluir que a Albânia tem níveis de poluição significativamente mais altos que Portugal, Espanha e França.
+A rede neural (100,50) foi a segunda melhor opção, com bom equilíbrio entre precisão e sensibilidade, enquanto a árvore de decisão destacou-se pela maior sensibilidade, sendo relevante em cenários onde é fundamental identificar corretamente todos os casos positivos.
 
-Portugal apresenta menor poluição que a Albânia, mas sem diferença significativa face a Espanha e França.
+O kNN apresentou o pior desempenho geral, com menor \textit{accuracy} e maior variabilidade entre os \textit{folds}, sugerindo menor adequação para este tipo de problema.
 
-Não existe correlação significativa entre os níveis de poluição médios de PM2.5 para asma e doença isquémica do coração entres Portugal, Espanha, França ou Itália.
+Em síntese, a escolha do modelo mais adequado depende do objetivo específico: maximizar precisão média, minimizar grandes erros ou equilibrar sensibilidade e especificidade. A análise reforça a importância da seleção criteriosa de algoritmos e da avaliação estatística rigorosa para problemas de previsão e classificação em contextos de saúde pública e poluição ambiental.
 
-Para o problema do poluente PM2.5 na Alemanha, os dados não cumprem os pressupostos necessários para se efetuar inferência estatística e, embora o modelo obtido tenha um coeficiente de determinação de 76,8\%, as previsões de mortes ficam completamente desfasadas da realidade.
 
 \begin{thebibliography}{00}
 \bibitem{madureira2024aed}
