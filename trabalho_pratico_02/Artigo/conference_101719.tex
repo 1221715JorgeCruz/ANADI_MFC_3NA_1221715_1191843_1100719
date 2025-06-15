@@ -42,11 +42,11 @@ Porto, Portugal \\
 \begin{abstract}
 Este artigo tem como objetivo a aplicação de algoritmos de aprendizagem automática na exploração de dados e respetiva comparação usando os testes estatísticos mais adequados. A temática incide sobre os níveis de poluição e seus impactos em diversos países europeus, no âmbito da disciplina de Análise de Dados em Informática. 
 
-\textcolor{red}{É verificado se os dados são estatisticamente válidos e se se podem tirar conclusões dos mesmo, nomeadamente relações entre países e doenças, mas também de mortes prematuras associadas aos diferentes níveis médios de poluição.  }
+Foram aplicados modelos de regressão e classificação para prever mortes prematuras e distinguir doenças respiratórias. Os modelos foram avaliados com métricas estatísticas e comparados entre si.
 \end{abstract}
 
 \begin{IEEEkeywords}
-poluição, saúde, regressão linear, árvores de decisão, K-vizinhos-mais-próximos, redes neuronais, SVM
+poluição, saúde, regressão linear, classificação, árvores de decisão, K-vizinhos-mais-próximos, redes neuronais, SVM.
 \end{IEEEkeywords}
 
 \section{Introdução}
@@ -496,10 +496,63 @@ Na \figurename~\ref{fig:arvoreDecisaoCM} podemos visualizar a comparação entre
 
 \medskip
 
-\paragraph{K-vizinhos-mais-próximos}
+\paragraph{K-vizinhos-mais-próximos - kNN}
+
+Neste algoritmo, a normalização dos dados é necessária, para isso, utilizámos o \textit{MinMaxScaler}, uma vez que estamos a falar de distância entre pontos para a kNN.
+
+O \textit{KNeighborsClassifier} foi utilizado, testando entre 1 e 49, num passo de 2 (1,3,5...49). De todas as iterações, foi encontrada a que tem maior exatidão para k=5, visivel na \figurename~\ref{fig:kNN_exatidao_vs_k}.
 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{kNN_exatidao_vs_k}
+	\caption{kNN - Valores de exatidão em função de número de vizinhos \textit{k}.}
+	\label{fig:kNN_exatidao_vs_k}
+\end{figure}
 
+\medskip
+
+\subsubsection{\textbf{Exercício 4.3.3}}
+
+Para cada modelo da questão anterior obtemos os seguintes valores médios e desvio padrão de Accuracy, Sensitivity, Specificity e F1:
+
+\begin{table}[h]
+	\centering
+	\scriptsize
+	\caption{Desempenho dos Modelos de Classificação}
+	\begin{tabular}{|l|c|c|c|c|}
+		\hline
+		\textbf{Métrica} & \textbf{Decision Tree} & \textbf{NN (100,50)} & \textbf{SVM (C=100)} & \textbf{KNN} \\
+		\hline
+		Accuracy    & 0.784 ± 0.017   & 0.815 ± 0.013 & 0.823 ± 0.011 & 0.614 ± 0.029 \\
+		Sensitivity & 0.775 ± 0.031   & 0.660 ± 0.031 & 0.629 ± 0.028 & 0.507 ± 0.026 \\
+		Specificity & 0.775 ± 0.010   & 0.920 ± 0.010 & 0.952 ± 0.008 & 0.686 ± 0.059 \\
+		F1 Score    & 0.775 ± 0.019   & 0.741 ± 0.019 & 0.739 ± 0.020 & 0.513 ± 0.017 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+\medskip
+
+\subsubsection{\textbf{Exercício 4.3.4}}
+
+À luz dos resultados obtidos na questão anterior, percebemos que os modelos de SVM e NN têm a melhor \textit{accuracy} (exatidão), por isso, verificámos se existe uma diferença significativa no desempenho entre os dois, para um nível de significância de 5\% recorrendo ao teste \textit{t-stat}.
+
+Como o\textit{ p-value} é inferior a 0,05, concluímos que há diferenças estatisticamente significativas entre os dois modelos.
+
+
+\medskip
+
+\subsubsection{\textbf{Exercício 4.3.5}}
+
+A análise detalhada dos modelos revelou que o SVM com parâmetro \( C=100 \) apresenta o melhor desempenho global. Os principais pontos fortes incluem a maior \textit{accuracy} (82{,}3\%) entre todos os modelos, excelente \textit{specificity} (95{,}2\%) — o que indica menor número de falsos positivos — e baixa variabilidade, o que demonstra consistência nos resultados. Contudo, a principal limitação é a \textit{sensitivity} mais baixa (62{,}9\%), o que pode levar à perda de casos positivos.
+
+A rede neural com arquitetura (100,50) foi a segunda melhor opção, alcançando uma \textit{accuracy} de 81{,}5\%, o melhor \textit{F1-score} (74{,}1\%), indicando bom equilíbrio entre precisão e sensibilidade, e uma \textit{specificity} elevada (91{,}9\%). No entanto, a \textit{sensitivity} foi inferior à da Árvore de Decisão.
+
+A Árvore de Decisão destacou-se por apresentar a maior sensitivity (77{,}5\%), sendo a mais indicada em contextos onde é fundamental não deixar de identificar ocorrências relevantes. O modelo também apresentou equilíbrio geral entre as métricas, mas a \textit{accuracy} foi inferior à dos modelos SVM e NN.
+
+Por fim, o modelo KNN demonstrou o pior desempenho geral, com a menor \textit{accuracy} (61{,}4\%), alta variabilidade entre os \textit{folds} e o \textit{F1-score} mais baixo (51{,}3\%), indicando um desempenho inferior em todos os aspetos avaliados.
 
 \section*{Conclusões}
 
